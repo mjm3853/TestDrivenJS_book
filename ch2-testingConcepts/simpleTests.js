@@ -1,10 +1,11 @@
 YUI().use('test-console', 'test', function (Y) {
 
-    var suite = new Y.Test.Suite("SimpleSuite1");
+    var suite = new Y.Test.Suite("Simple currency conversion suite");
 
     //tests go here
     var testCase = new Y.Test.Case({
-
+        name: "Simple currency conversion case",
+        
         setUp: function () {
             this.expectedResult = 1.59;
         },
