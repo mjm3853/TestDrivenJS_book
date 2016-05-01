@@ -1,4 +1,7 @@
 YUI().use('test-console', 'test', function (Y) {
+
+    var suite = new Y.Test.Suite("SimpleSuite1");
+
     //tests go here
     var testCase = new Y.Test.Case({
 
@@ -20,7 +23,9 @@ YUI().use('test-console', 'test', function (Y) {
         newestOnTop: false,
     }).render('#testLogs');
 
-    Y.Test.Runner.add(testCase);
+    suite.add(testCase);
+
+    Y.Test.Runner.add(suite);
 
     //run the tests
     Y.Test.Runner.run();
