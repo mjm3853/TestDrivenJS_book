@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ch 2 | Testing Concepts</title>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/logger/assets/skins/sam/logger.css">
+
+    <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+
+    <script>
+        function convertCurrency(amount, rateOfConversion){
+            //logic goes here
+        }
+        
+        YUI().use('test-console', function(Y){
+            //tests go here
+            
+            //render the test console
+            new Y.Test.Console().render('#testLogs');
+            
+            //run the tests
+            Y.Test.Runner.run();
+        });
+    </script>
+</head>
+
+<body class="yui3-skin-sam">
+    <div id="testLogs">
+        
+    </div>
+</body>
+</html>
