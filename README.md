@@ -1,2 +1,2 @@
 # tddJS
-Code and Files from the book Test Driven JavaScript Development
+Code and Files from the book Test-Driven JavaScript Development
