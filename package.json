@@ -1,0 +1,27 @@
+{
+  "name": "tdd-js",
+  "version": "1.0.0",
+  "description": "Code and files from the book Test-Driven JavaScript Development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjm3853/tddJS.git"
+  },
+  "author": "Matt McGrath",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjm3853/tddJS/issues"
+  },
+  "homepage": "https://github.com/mjm3853/tddJS#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "dalek": "0.0.0",
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.22",
+    "mocha": "^2.4.5",
+    "pug": "^2.0.0-alpha6"
+  }
+}
