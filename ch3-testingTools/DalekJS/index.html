@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ch 3 | Testing Tools | DalekJS</title>
+</head>
+
+<script>
+    function convertCurrency(amount, rateOfConversion) {
+    var toCurrencyAmount = 0;
+    toCurrencyAmount = 1/rateOfConversion * amount;
+    toCurrencyAmount = parseFloat(toCurrencyAmount).toFixed(2);
+    document.getElementById('toCurrencyAmount').value = '$'+toCurrencyAmount;
+}
+</script>
+
+
+<body>
+    <input id="amount" name="amount" type="text" value="" />
+    <input id="rateOfConversion" name="rateOfConversion" type="text" value="" />
+    <input id="convert" name="convert" type="submit" value="Convert" onClick="convertCurrency (document.getElementById('amount').value, document.getElementById('rateOfConversion').value)"
+    />
+    <input id="toCurrencyAmount" name="toCurrencyAmount" type="text" value="" />
+</body>
+
+</html>

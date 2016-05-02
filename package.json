@@ -25,6 +25,7 @@
     "pug": "^2.0.0-alpha6"
   },
   "devDependencies": {
+    "dalekjs": "0.0.9",
     "karma-chrome-launcher": "^0.2.3",
     "karma-jasmine": "^0.3.8",
     "karma-requirejs": "^0.2.6",
