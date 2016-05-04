@@ -21,16 +21,19 @@ Employee.prototype.getGrade = function () {
 };
 
 Employee.prototype.getSalary = function () {
+    if (!this.salary) {
+        this.salary = this.calculateSalary();
+    }
     return this.salary;
 };
 
 Employee.prototype.calculateSalary = function () {
-    return this.grade * DEFAULT_SALARY;  
+    return this.grade * DEFAULT_SALARY;
 };
 
 Employee.prototype.getDetails = function () {
     return "Employee Name: " + this.getName() +
-           "\nDepartment: " + this.getDepartment() + 
-           "\nGrade: " + this.getGrade() +
-           "\nSalary: " + this.getSalary();
+        "\nDepartment: " + this.getDepartment() +
+        "\nGrade: " + this.getGrade() +
+        "\nSalary: " + this.getSalary();
 };
