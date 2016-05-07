@@ -22,5 +22,16 @@ describe("Jasmine Spy", function () {
         alice.calculateSalary();
         expect(alice.calculateSalary).toHaveBeenCalled();
         expect(alice.calculateSalary()).toEqual(9999);
-    })
+    });
+
+    it("Spying Employee with fake call", function () {
+        var alice = new Employee("Alice", 4, "Testing");
+        spyOn(alice, "calculateSalary").and.callFake(function(grade){
+           var tSalary = 1000;
+           return tSalary * grade; 
+        });
+        var salary = alice.calculateSalary(10);
+        expect(alice.calculateSalary).toHaveBeenCalled();
+        expect(salary).toEqual(10000);
+    });
 });
