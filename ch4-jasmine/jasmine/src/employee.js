@@ -37,3 +37,11 @@ Employee.prototype.getDetails = function () {
         "\nGrade: " + this.getGrade() +
         "\nSalary: " + this.getSalary();
 };
+
+Employee.prototype.markAttendance = (status) => {
+    this.attendanceStatus = status;
+}
+
+Employee.prototype.getAttendance = () => {
+    return this.attendanceStatus;
+}
