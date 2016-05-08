@@ -37,21 +37,21 @@ describe("Jasmine Spy", function () {
 
     it("Tracking spies with calls property", function () {
         var alice = new Employee("Alice", 4, "Testing");
-        
+
         spyOn(alice, "calculateSalary").and.callThrough();
         var salary = alice.getSalary();
-        
+
         alice.calculateSalary.and.stub();
         salary = alice.getSalary();
         expect(salary).toEqual(4000);
-        
+
         expect(alice.calculateSalary.calls.any()).toEqual(true);
         expect(alice.calculateSalary.calls.count()).toEqual(1);
         console.log(alice.calculateSalary.calls.argsFor(0));
         expect(alice.calculateSalary.calls.argsFor(0)).toEqual([]);
-        
+
         alice.calculateSalary(1000);
-        
+
         console.log(alice.calculateSalary.calls.argsFor(1));
         expect(alice.calculateSalary.calls.allArgs());
         expect(alice.calculateSalary.calls.allArgs()).toEqual([[], [1000]]);
