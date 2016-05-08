@@ -26,7 +26,7 @@ describe('Custom Matcher', () => {
 
     it('Expected employee to be present', () => {
         var alice = new Employee("Alice", 5, "Testing");
-        alice.markAttendance(2);
+        alice.markAttendance(1);
         console.log(alice);
         expect(alice).toBePresent();
     });
