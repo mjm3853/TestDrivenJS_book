@@ -35,8 +35,4 @@ describe('Using mock-ajax', () => {
         expect(successFuction).toHaveBeenCalledWith('Temp 25 C, Sunlight');
 
     });
-
-
-
-
 });
