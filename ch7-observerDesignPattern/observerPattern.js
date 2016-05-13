@@ -1,3 +1,9 @@
+if (!Object.observe){
+    alert('Your browser does not support Object.observe. This demo will not work.');
+}
+
+console.log("Your browser supports Object.observe");
+
 var employee = {
     status: {},
     StatusModified: false
