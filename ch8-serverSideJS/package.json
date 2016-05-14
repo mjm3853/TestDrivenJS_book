@@ -1,0 +1,23 @@
+{
+  "name": "serverside-testing",
+  "version": "1.0.0",
+  "description": "Testing Mocha and other TDD tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjm3853/tddJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjm3853/tddJS/issues"
+  },
+  "homepage": "https://github.com/mjm3853/tddJS#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
