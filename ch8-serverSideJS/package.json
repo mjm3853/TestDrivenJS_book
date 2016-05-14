@@ -1,0 +1,25 @@
+{
+  "name": "serverside-testing",
+  "version": "1.0.0",
+  "description": "Testing Mocha and other TDD tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjm3853/tddJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjm3853/tddJS/issues"
+  },
+  "homepage": "https://github.com/mjm3853/tddJS#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
+    "request": "^2.72.0"
+  }
+}
