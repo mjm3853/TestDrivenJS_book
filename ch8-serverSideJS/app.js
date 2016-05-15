@@ -16,10 +16,6 @@ var app = express();
 
 var port = 8000;
 
-var server = app.listen(port, () => {
-    console.log("Server started, listening on port", port);
-});
-
 var MongoClient = mongodb.MongoClient;
 mongoose.connect('mongodb://localhost:27017/nodedb');
 var db = mongoose.connection;
@@ -43,4 +39,10 @@ app.post('/login', passport.authenticate('local', {
 
 app.get('/loginFailure', (request, response, next) => {
    response.render('login', {msg: 'Authentication Failed. Please enter valid user credentials', show: 'alert alert-danger'}) 
+});
+
+
+
+var server = app.listen(port, () => {
+    console.log("Server started, listening on port", port);
 });
