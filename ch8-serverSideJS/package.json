@@ -21,6 +21,7 @@
     "chai": "^3.5.0",
     "consolidate": "^0.14.1",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "method-override": "^2.3.5",
     "mocha": "^2.4.5",
     "mongoose": "^4.4.17",

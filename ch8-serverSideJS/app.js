@@ -10,7 +10,9 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var mongoose = require("mongoose/");
 var methodOverride = require("method-override");
+var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
+var session = require('express-session')
 
 // MongoDB
 var MongoClient = mongodb.MongoClient;
@@ -18,23 +20,23 @@ mongoose.connect('mongodb://localhost:27017/nodedb');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
-  // yay!
-  console.log(user.find());
   console.log("db open");
 });
 
+//instantiate express
+
 var app = express();
 
-var port = 8000;
-
 // Use the static assets from the same directory as this server.js file
-// Body parser
-var bodyParser = require('body-parser');
-
-app.use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
-app.use(bodyParser.json()) // parse application/json
 app.use(express.static(path.resolve("./app")));
+app.use(bodyParser.json()) // parse application/json
+app.use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
 app.use(methodOverride());
+app.use(session({
+    secret: 'node1234567890NODY',
+    resave: false,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
@@ -42,6 +44,7 @@ process.env.NODE_ENV = "development";
 
 // check if user is trying to access dashboard directly without being authenticated.
 function requireLogin(req, res, next) {
+  console.log("requireLogin called with", req.user);
   if (!req.user) {
     res.redirect('login');
   } else {
@@ -182,6 +185,8 @@ app.get('/ping', function (req, res) {
 });
 
 //server
+
+var port = 8000;
 
 var server = app.listen(port, () => {
   console.log("Server started, listening on port", port);
