@@ -84,6 +84,17 @@ describe('Test Login Module', () => {
     });
         
 
+describe('Users must login before accessing dashboard', () => {
+    
+    it('users must not access dashboard without login', (done) => {
+        http.get(url + ":" + port + "/dashboard", (response) => {
+           assert.equal(response.statusCode, 302);
+           done(); 
+        });
+    });
+        
+});
+    
 
 });
 
