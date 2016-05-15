@@ -106,56 +106,79 @@ app.post('/login',
 );
 
 app.get('/loginFailure', (request, response, next) => {
-  response.render('login', { msg: 'Authentication Failed. Please enter valid user credentials', show: 'alert alert-danger' })
+  response.render('login', {
+    msg: 'Authentication Failed. Please enter valid user credentials',
+    show: 'alert alert-danger'
+  })
 });
 
 // login logic ends
 
-app.post('/addticket', function(req, res) {
-	
-	now = new Date();
-	dateNow = now;
-	
-	var addticket = new TicketDetail({user: req.user.name,email: req.user.email, issuetype : req.body.type, department: req.body.department, ticketstate: 'open',comments:req.body.comments, createddate:now});
-	
-	addticket.save(function(err){ 
-        if(err) {
-			throw err;
-			 } 
-			 else
-			 {
-				res.render('addticket',{msg:'Your Ticket Submitted Successfully', show:'alert alert-info', visibility:'hidden'});
+app.post('/addticket', function (req, res) {
+
+  now = new Date();
+  dateNow = now;
+
+  var addticket = new TicketDetail({
+    user: req.user.name,
+    email: req.user.email,
+    issuetype: req.body.type,
+    department: req.body.department,
+    ticketstate: 'open',
+    comments: req.body.comments,
+    createddate: now
+  });
+
+  addticket.save(function (err) {
+    if (err) {
+      throw err;
 			 }
-    });
+			 else {
+      res.render('addticket', {
+        msg: 'Your Ticket Submitted Successfully',
+        show: 'alert alert-info',
+        visibility: 'hidden'
+      });
+			 }
+  });
 });
 
-app.get('/addnewticket', function(req, res, next) {
-		res.render('addticket',{ title:'Add new ticket', username : req.user.name, email:req.user.email, visibility:'show' });
+app.get('/addnewticket', function (req, res, next) {
+		res.render('addticket', {
+    title: 'Add new ticket',
+    username: req.user.name,
+    email: req.user.email,
+    visibility: 'show'
+  });
 });
 
-app.get('/dashboard',requireLogin, function(req, res) {
-  
+app.get('/dashboard', requireLogin, function (req, res) {
+
   console.log("dashboard view called");
 
-	TicketDetail.find({email: req.user.email }, function(err, obj) {
-	  if (err){ throw err;}
-		else
-	  {
-		var tickets = Object.keys(obj).map(function(k) { return obj[k] });
-		res.render('dashboard',{title: 'HelpDesk Ticket Tracking Tool',username:req.user.name,email:req.user.email,tickets:tickets});
-		res.status(200);
-		console.log(tickets);
-	  }
-	});
+  TicketDetail.find({ email: req.user.email }, function (err, obj) {
+    if (err) { throw err; }
+    else {
+      var tickets = Object.keys(obj).map(function (k) { return obj[k] });
+      res.render('dashboard', {
+        title: 'HelpDesk Ticket Tracking Tool',
+        username: req.user.name,
+        email: req.user.email,
+        tickets: tickets
+      });
+      res.status(200);
+      console.log(tickets);
+    }
+  });
 });
 
-app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
+app.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
 });
 
-app.get('/ping', function(req, res){
-    res.status(200).send("pong!");
+app.get('/ping', function (req, res) {
+  res.status(200).send("pong!");
 });
 
 //server
