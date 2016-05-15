@@ -100,7 +100,7 @@ app.get('/loginFailure', (request, response, next) => {
    response.render('login', {msg: 'Authentication Failed. Please enter valid user credentials', show: 'alert alert-danger'}) 
 });
 
-
+//server
 
 var server = app.listen(port, () => {
     console.log("Server started, listening on port", port);

@@ -50,13 +50,15 @@ describe('Test Login Module', () => {
     });
 
 
-    afterEach((done) => {
-        userLogin.remove({ username: 'testuser' }, () => {
-            if (error) console.log("Error while removing user", error.message);
-            else console.log('user removed from the database successfully');
-            done();
-        });
-    });
+    afterEach(function(done) {
+		userLogin.remove({username: 'testuser'}, function(err) {
+			if (err)
+				console.log('error' + err);
+			else 
+				console.log('user removed from the database successfully');			
+			done();
+		});
+	});
 
     it('should return the login page', (done) => {
         http.get(url + ":" + port, (response) => {
