@@ -35,7 +35,10 @@ function requireLogin (req, res, next) {
 
 // MongoDB
 
+<<<<<<< HEAD
 //We need to use "MongoClient" interface in order to get connected to a mongodb server.
+=======
+>>>>>>> 4e306b4fe29d37861e725a2bc5d79833a8aee374
 var MongoClient = mongodb.MongoClient;
 mongoose.connect('mongodb://localhost:27017/nodedb');
 var db = mongoose.connection;
