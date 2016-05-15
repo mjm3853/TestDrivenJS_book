@@ -39,5 +39,8 @@ app.get('/login', (request, response, next) => {
 app.post('/login', passport.authenticate('local', {
     successRedirect: "/dashboard",
     failureRedirect: "/loginFailure"
+}));
+
+app.get('/loginFailure', (request, response, next) => {
+   response.render('login', {msg: 'Authentication Failed. Please enter valid user credentials', show: 'alert alert-danger'}) 
 });
-);
