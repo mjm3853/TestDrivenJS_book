@@ -19,3 +19,8 @@ var server = app.listen(port, () => {
     console.log("Server started, listening on port", port);
 });
 
+var MongoClient = mongodb.MongoClient;
+mongoose.connect('mongodb://localhost:27017/nodedb');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Error while connecting to the db'));
+db.once('open', function (callback) {});

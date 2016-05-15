@@ -18,9 +18,12 @@
   "homepage": "https://github.com/mjm3853/tddJS#readme",
   "dependencies": {
     "chai": "^3.5.0",
+    "consolidate": "^0.14.1",
     "express": "^4.13.4",
+    "method-override": "^2.3.5",
     "mocha": "^2.4.5",
     "mongoose": "^4.4.17",
+    "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "request": "^2.72.0",
     "swig": "^1.4.2"
