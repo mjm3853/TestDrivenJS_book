@@ -1,1 +1,6 @@
 node_modules/
+<<<<<<< HEAD
+data/**
+=======
+**/data/
+>>>>>>> 4e306b4fe29d37861e725a2bc5d79833a8aee374

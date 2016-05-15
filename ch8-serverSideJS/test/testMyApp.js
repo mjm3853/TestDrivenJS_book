@@ -2,6 +2,7 @@ var assert = require("chai").assert;
 var http = require("http");
 var userLogin = require("../custom_modules/user");
 var mongoose = require("mongoose");
+var should = require("should");
 
 var server = require("../custom_modules/server.js");
 
@@ -50,13 +51,15 @@ describe('Test Login Module', () => {
     });
 
 
-    afterEach((done) => {
-        userLogin.remove({ username: 'testuser' }, () => {
-            if (error) console.log("Error while removing user", error.message);
-            else console.log('user removed from the database successfully');
-            done();
-        });
-    });
+    afterEach(function(done) {
+		userLogin.remove({username: 'testuser'}, function(err) {
+			if (err)
+				console.log('error' + err);
+			else 
+				console.log('user removed from the database successfully');			
+			done();
+		});
+	});
 
     it('should return the login page', (done) => {
         http.get(url + ":" + port, (response) => {
@@ -69,6 +72,17 @@ describe('Test Login Module', () => {
             });
         });
     });
+    
+    
+    it('should find a user by username', (done) => {
+        userLogin.findOne({username: 'testuser'}, (err, user) => {
+           user.username.should.eql('testuser');
+           console.log("username: ", user.username)
+           done(); 
+        });
+        
+    });
+        
 
 
 });
