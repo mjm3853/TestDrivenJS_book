@@ -12,11 +12,27 @@ var mongoose = require("mongoose/");
 var methodOverride = require("method-override");
 var mongodb = require("mongodb");
 
+// MongoDB
+var MongoClient = mongodb.MongoClient;
+mongoose.connect('mongodb://localhost:27017/nodedb');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+  // yay!
+  console.log(user.find());
+  console.log("db open");
+});
+
 var app = express();
 
 var port = 8000;
 
 // Use the static assets from the same directory as this server.js file
+// Body parser
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
+app.use(bodyParser.json()) // parse application/json
 app.use(express.static(path.resolve("./app")));
 app.use(methodOverride());
 app.use(passport.initialize());
@@ -33,19 +49,10 @@ function requireLogin (req, res, next) {
   }
 };
 
-// MongoDB
-var MongoClient = mongodb.MongoClient;
-mongoose.connect('mongodb://localhost:27017/nodedb');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-  // yay!
-  console.log("db open");
-});
-
 // passport config for login
 
 passport.use(new LocalStrategy(function(username, password, done) {
+  console.log("Passport called with", username);
   process.nextTick(function() {
     user.findOne({
       'username': username, 
