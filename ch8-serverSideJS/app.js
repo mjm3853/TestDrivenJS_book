@@ -12,9 +12,37 @@ var mongoose = require("mongoose/");
 var methodOverride = require("method-override");
 var mongodb = require("mongodb");
 
+var app = express();
 
 var port = 8000;
 
+var MongoClient = mongodb.MongoClient;
+mongoose.connect('mongodb://localhost:27017/nodedb');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Error while connecting to the db'));
+db.once('open', function (callback) {
+    console.log("db open");
+});
+
+app.get('/', (request, response, next) => {
+    response.render('login');
+});
+
+app.get('/login', (request, response, next) => {
+    response.render('login');
+});
+
+app.post('/login', passport.authenticate('local', {
+    successRedirect: "/dashboard",
+    failureRedirect: "/loginFailure"
+}));
+
+app.get('/loginFailure', (request, response, next) => {
+   response.render('login', {msg: 'Authentication Failed. Please enter valid user credentials', show: 'alert alert-danger'}) 
+});
+
+
+
 var server = app.listen(port, () => {
-   console.log("Server started, listening on port", port); 
+    console.log("Server started, listening on port", port);
 });
