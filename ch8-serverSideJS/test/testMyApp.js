@@ -1,6 +1,7 @@
 var assert = require("chai").assert;
 var http = require("http");
 var userLogin = require("../custom_modules/user");
+var TicketDetails = require("../custom_modules/ticket");
 var mongoose = require("mongoose");
 var should = require("should");
 
@@ -8,6 +9,8 @@ var server = require("../custom_modules/server.js");
 
 var url = "http://localhost";
 var port = "8000";
+
+var mongoPath = 'mongodb://localhost:27017/nodedb';
 
 var db;
 
@@ -26,7 +29,7 @@ describe('Testing Running Status of Server', () => {
 
 describe('Test Login Module', () => {
     before((done) => {
-        db = mongoose.connect('mongodb://localhost:27017/nodedb');
+        db = mongoose.connect(mongoPath);
         done();
     });
 
@@ -94,6 +97,37 @@ describe('Users must login before accessing dashboard', () => {
     });
         
 });
+
+
+describe('Testing ticket module', () => {
+    
+    before((done) => {
+        db = mongoose.createConnection(mongoPath);
+        done();
+    });
+    
+    after((done) => {
+       mongoose.connection.close();
+       done(); 
+    });
+    
+    
+    beforeEach((done) => {
+        var ticket = new TicketDetails({
+           user: 'testuser',
+           email: 'test@testdomain.com',
+           issuetype: 'Access Related Issue',
+           department: 'IT',
+           ticketstate: 'Open',
+           comments: 'not able to access the shared database URL',
+           createddate: Date('2015-09-15') 
+        });
+        
+        
+    });
+        
+});
+    
     
 
 });
