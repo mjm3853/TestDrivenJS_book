@@ -24,7 +24,6 @@ db.once('open', function (callback) {
 });
 
 //instantiate express
-
 var app = express();
 
 // Use the static assets from the same directory as this server.js file
