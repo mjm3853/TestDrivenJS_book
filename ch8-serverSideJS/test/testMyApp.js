@@ -54,15 +54,15 @@ describe('Test Login Module', () => {
     });
 
 
-    afterEach(function(done) {
-		userLogin.remove({username: 'testuser'}, function(err) {
-			if (err)
-				console.log('error' + err);
-			else 
-				console.log('user removed from the database successfully');			
-			done();
-		});
-	});
+    afterEach(function (done) {
+        userLogin.remove({ username: 'testuser' }, function (err) {
+            if (err)
+                console.log('error' + err);
+            else
+                console.log('user removed from the database successfully');
+            done();
+        });
+    });
 
     it('should return the login page', (done) => {
         http.get(url + ":" + port, (response) => {
@@ -75,60 +75,82 @@ describe('Test Login Module', () => {
             });
         });
     });
-    
-    
+
+
     it('should find a user by username', (done) => {
-        userLogin.findOne({username: 'testuser'}, (err, user) => {
-           user.username.should.eql('testuser');
-           console.log("username: ", user.username)
-           done(); 
+        userLogin.findOne({ username: 'testuser' }, (err, user) => {
+            user.username.should.eql('testuser');
+            console.log("username: ", user.username)
+            done();
         });
-        
+
     });
-        
+
+});
 
 describe('Users must login before accessing dashboard', () => {
-    
+
     it('users must not access dashboard without login', (done) => {
         http.get(url + ":" + port + "/dashboard", (response) => {
-           assert.equal(response.statusCode, 302);
-           done(); 
+            assert.equal(response.statusCode, 302);
+            done();
         });
     });
-        
+
 });
 
 
 describe('Testing ticket module', () => {
-    
+
     before((done) => {
         db = mongoose.createConnection(mongoPath);
         done();
     });
-    
+
     after((done) => {
-       mongoose.connection.close();
-       done(); 
+        mongoose.connection.close();
+        done();
     });
-    
-    
+
+
     beforeEach((done) => {
         var ticket = new TicketDetails({
-           user: 'testuser',
-           email: 'test@testdomain.com',
-           issuetype: 'Access Related Issue',
-           department: 'IT',
-           ticketstate: 'Open',
-           comments: 'not able to access the shared database URL',
-           createddate: Date('2015-09-15') 
+            user: 'testuser',
+            email: 'test@testdomain.com',
+            issuetype: 'Access Related Issue',
+            department: 'IT',
+            ticketstate: 'Open',
+            comments: 'not able to access the shared database URL',
+            createddate: Date('2015-09-15')
         });
-        
-        
+
+        ticket.save("Adding a ticket", (error) => {
+            if (error) console.log('error while saving a ticket', error.message);
+            else console.log('no error in saving a new ticket');
+        });
+
+        done();
     });
-        
-});
-    
-    
+
+
+    afterEach((done) => {
+        TicketDetails.remove({ user: 'testuser' }, (error) => {
+            if (error) console.log('error while removing a ticket', error.message);
+            else console.log('Ticket removed successfully');
+        });
+
+        done();
+    });
+
+
+    it('find tickets of user by email address', (done) => {
+        TicketDetails.find({ email: 'test@testdomain.com' }, (err, TicketDetails) => {
+            TicketDetails.email.should.eql('test@testdomain.com');
+            console.log("Email address of user:", TicketDetails.email);
+        });
+
+        done();
+    });
 
 });
 
