@@ -4,6 +4,7 @@
   "description": "Testing Mocha and other TDD tools",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "mocha --reporter spec"
   },
   "repository": {
@@ -20,12 +21,14 @@
     "chai": "^3.5.0",
     "consolidate": "^0.14.1",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "method-override": "^2.3.5",
     "mocha": "^2.4.5",
     "mongoose": "^4.4.17",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "request": "^2.72.0",
+    "should": "^8.3.1",
     "swig": "^1.4.2"
   }
 }

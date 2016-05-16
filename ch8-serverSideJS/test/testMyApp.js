@@ -2,6 +2,7 @@ var assert = require("chai").assert;
 var http = require("http");
 var userLogin = require("../custom_modules/user");
 var mongoose = require("mongoose");
+var should = require("should");
 
 var server = require("../custom_modules/server.js");
 
@@ -71,7 +72,29 @@ describe('Test Login Module', () => {
             });
         });
     });
+    
+    
+    it('should find a user by username', (done) => {
+        userLogin.findOne({username: 'testuser'}, (err, user) => {
+           user.username.should.eql('testuser');
+           console.log("username: ", user.username)
+           done(); 
+        });
+        
+    });
+        
 
+describe('Users must login before accessing dashboard', () => {
+    
+    it('users must not access dashboard without login', (done) => {
+        http.get(url + ":" + port + "/dashboard", (response) => {
+           assert.equal(response.statusCode, 302);
+           done(); 
+        });
+    });
+        
+});
+    
 
 });
 
